@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+openai = "*"
+streamlit = "*"
+llama-index = "*"
+wheel = "*"
+duckdb = "*"
+setuptools = "*"
+llama-index-vector-stores-duckdb = "*"
+certifi = "*"
+httpx = "*"
+duckdb-engine = "*"
+altair = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
