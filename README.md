@@ -22,7 +22,7 @@ Leveraging multiple LargeLanguageModels is one of the emerging techniques to imp
 
 After asking a question and receiving the answers from both models, by activating the Consensus option and choosing the number of iteration, the app activate a rudimentary system which asks Anthropic to evaluate OpenAI answer and vice versa.
 
-<img src = './pictures/picture02.png' alt = 'Diagram' title = 'Diagram' width = '50%'>
+<img src = './pictures/picture02.png' alt = 'Diagram' title = 'Diagram' width = '30%'>
 
 In the below screenshot, with one iteration, Anthropic and OpenAI can evaluate the first answer of the other model and generate a new answer. The original question is: "Which is the best science fiction novel about galactic empires?
 
