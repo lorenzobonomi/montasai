@@ -14,13 +14,13 @@ The App is entirely coded in Python. Streamlit is used for the front-end and the
 
 ## OpenAIBot & AntrophicBot
 
-In these two sections of the App, it's possible to interact with a single bot: OpenAI with the gpt-4-turbo-preview model and Anthropic with the claude-3-opus-20240229 model. All is needed is an API key from each of these two services.
+In these two sections of the App, it's possible to interact with a single bot: OpenAI with the gpt-4-turbo-preview model and Anthropic with the claude-3-opus-20240229 model. All it's needed is an API key from each of these two services.
 
 ## ConsensusBot
 
 Leveraging multiple LargeLanguageModels is one of the emerging techniques to improve the quality of the responses. In the ConsensusBot page it's possible to interact with both models at the same time.
 
-After asking a question and receiving the answers from both models, by activating the Consensus option and choosing the number of iteration, the app activate a rudimentary system which asks Anthropic to evaluate OpenAI answer and vice versa.
+After asking a question and receiving the answers from both models, by activating the Consensus option and choosing the number of iterations, the app activate a rudimentary system which asks Anthropic to evaluate OpenAI answer and vice versa.
 
 <img src = './pictures/picture02.png' alt = 'Diagram' title = 'Diagram' width = '30%'>
 
