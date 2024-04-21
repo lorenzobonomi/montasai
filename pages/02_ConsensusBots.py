@@ -3,11 +3,14 @@ from models import chatInteraction
 from models import anthropicName, openaiName, messagesAnt, messagesOpen
 
 st.set_page_config(page_title = 'Montasai')
+st.sidebar.header("Montasai")
 
 promptConsensus = ''
 promptTest1, promptTest2 = None, None
 
 with st.sidebar:
+
+    st.header('ConsensusBots')
 
     st.markdown('#### System Prompt')
     systemPrompt = st.text_area(

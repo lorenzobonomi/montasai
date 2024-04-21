@@ -4,10 +4,11 @@ from models import chatInteraction
 from models import anthropicName, openaiName, messagesAnt, messagesOpen
 
 st.set_page_config(page_title = 'Montasai')
+st.sidebar.header("Montasai")
 
 with st.sidebar:
 
-    st.header('Multi ChatBots')
+    st.header('MultiBots')
     systemPrompt = st.text_area(
         'System Prompt', 
         value = 'You are a data scientist. You reply with concise statements. Do not write too much.'

@@ -6,11 +6,12 @@ messagesOpen = 'messagesOpenSolo'
 
 # Client settings
 st.set_page_config(page_title = 'Montasai')
+st.sidebar.header("Montasai")
 
 # Sidebar with system prompt
 with st.sidebar:
 
-    st.header('OpenAI Chatbot')
+    st.header('OpenAIBot')
     systemPrompt = st.text_area(
         'System Prompt', 
         value = 'You are a data scientist. You reply with concise statements. Do not write too much.'
