@@ -41,7 +41,7 @@ class ModelOpenAI:
 
     def __init__(self, temperature):
 
-        self.model = 'gpt-4-turbo-preview'
+        self.model = 'gpt-4o'
         self.temperature = temperature
         self.client = OpenAI(api_key = st.secrets[openaiKey])
 
