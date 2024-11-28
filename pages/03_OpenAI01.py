@@ -1,14 +1,15 @@
 import streamlit as st
 from models import chatInteraction
-from models import anthropicName
+from models import openaiName
 
-messagesAnt = 'messagesAntSolo'
+messagesAnt = 'messagesOpenAI01Solo'
+#odelversion = 'o1-preview-2024-09-12'
 
 st.set_page_config(page_title = 'Montasai')
 st.sidebar.header("Montasai")
 
 with st.sidebar:
-    st.header('AnthropicBot')
+    st.header('OpenAI01')
     systemPrompt = st.text_area(
         'System Prompt', 
         value = 'You are a data scientist. You reply with concise statements. Do not write too much.'
@@ -17,11 +18,12 @@ with st.sidebar:
     optionLatex = st.radio("Enable LatexFormatting:", ("Yes", "No"))
 
 if prompt := st.chat_input('Ask the model'):
-    st.markdown(anthropicName)
+    st.markdown(openaiName)
 
     if optionLatex == "Yes":
         prompt = prompt + st.session_state.latexFormatting
 
-    chatInteraction(systemPrompt, anthropicName, messagesAnt, prompt, st.session_state.modelversionAnt)
+    chatInteraction(systemPrompt, openaiName, messagesAnt, prompt, st.session_state.modelversionOAI01)
+
 
 

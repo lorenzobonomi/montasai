@@ -9,11 +9,12 @@ messagesOpen = 'messages' + openaiName
 anthropicKey = 'ANTHROPIC_API_KEY'
 openaiKey = 'OPENAI_API_KEY'
 
+
 class ModelAnthropic:
 
-    def __init__(self, temperature, system, maxTokens):
+    def __init__(self, temperature, system, maxTokens, modelversion):
 
-        self.model = 'claude-3-opus-20240229'
+        self.model = modelversion
         self.temperature = temperature
         self.system = system
         self.max_tokens = maxTokens
@@ -39,9 +40,9 @@ class ModelAnthropic:
 
 class ModelOpenAI:
 
-    def __init__(self, temperature):
+    def __init__(self, temperature, modelversion):
 
-        self.model = 'gpt-4o'
+        self.model = modelversion
         self.temperature = temperature
         self.client = OpenAI(api_key = st.secrets[openaiKey])
 
@@ -58,6 +59,8 @@ class ModelOpenAI:
 
         return stream
     
+
+    
 def chatInput(messagesName, client, modelName, prompt):
 
     if messagesName not in st.session_state:
@@ -69,21 +72,22 @@ def chatInput(messagesName, client, modelName, prompt):
     for message in st.session_state[messagesName]:
         with st.chat_message(message['role']):
             if message['role'] == 'user' or modelName == openaiName:
-                st.markdown(message['content'])       
+                st.markdown(message['content'])   
             else:
                 st.markdown(message['content'][0].text)
-
+    
     st.session_state[messagesName].append({'role': 'user', 'content': prompt})
 
     with st.chat_message('user'):
         st.markdown(prompt)
 
 
-def chatOutput(modelName, messagesName, systemPrompt, client):
+def chatOutput(modelName, messagesName, systemPrompt, client, modelversion):
 
     if modelName == openaiName:
         with st.chat_message('assistant'):
-            st.session_state[messagesName].append({'role': 'system', 'content' : systemPrompt})
+            if modelversion == 'gpt-4o':
+                st.session_state[messagesName].append({'role': 'system', 'content' : systemPrompt})
             stream = client.createM(st.session_state[messagesName])
             response = st.write_stream(stream)
 
@@ -101,25 +105,18 @@ def chatOutput(modelName, messagesName, systemPrompt, client):
         return stream.content[0].text
 
 
-def chatInteraction(systemPrompt, modelName, messagesName, prompt):
+def chatInteraction(systemPrompt, modelName, messagesName, prompt, modelversion):
     
     consensus = "I asked the same question to another model. Please analyze its answer in [] and improve your answer"
 
     if modelName == openaiName:
-        client = ModelOpenAI(0)
+        client = ModelOpenAI(0, modelversion)
     else:
-        client = ModelAnthropic(0, systemPrompt, 500)
+        client = ModelAnthropic(0, systemPrompt, 500, modelversion)
     
     chatInput(messagesName, client, modelName, prompt)
-    risposta = chatOutput(modelName, messagesName, systemPrompt, client)
+    risposta = chatOutput(modelName, messagesName, systemPrompt, client, modelversion)
 
     return risposta
-
-    '''for i in range(1, 3):
-        i += 1
-        if i == 1:
-            chatInput(messagesName, client, modelName, prompt)
-            chatOutput(modelName, messagesName, systemPrompt, client)
-        else:'''
 
         

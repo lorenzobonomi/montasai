@@ -24,20 +24,24 @@ with st.sidebar:
     
     st.markdown('#### Activate Consensus')
     on = st.toggle('')
-
+    
+    optionLatex = st.radio("Enable LatexFormatting:", ("Yes", "No"))
  
 col1, col2 = st.columns(2)
 
 if prompt := st.chat_input('Ask the models'):
 
+    if optionLatex == "Yes":
+        prompt = prompt + st.session_state.latexFormatting
+
     with col1:
         st.markdown(anthropicName)
-        risposta = chatInteraction(systemPrompt, anthropicName, messagesAnt, prompt)
+        risposta = chatInteraction(systemPrompt, anthropicName, messagesAnt, prompt, st.session_state.modelversionAnt)
         st.session_state['rispostaAnt1'] = risposta
 
     with col2:
         st.markdown(openaiName)
-        risposta = chatInteraction(systemPrompt, openaiName, messagesOpen, prompt)
+        risposta = chatInteraction(systemPrompt, openaiName, messagesOpen, prompt, st.session_state.modelversionOAI)
         st.session_state['rispostaOpen1'] = risposta
 
 elif on:
