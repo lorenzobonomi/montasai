@@ -35,7 +35,7 @@ if prompt := st.chat_input('Ask the model'):
     if optionLatex == "Yes":
         prompt = prompt + st.session_state.latexFormatting
 
-    chatInteraction(systemPrompt, openaiName, messagesOpen, prompt, st.session_state.modelversionOAI)
+    chatInteraction(systemPrompt, openaiName, messagesOpen, prompt, st.session_state.modelversionOAI, 'low')
 
 hide_streamlit_style = """
     <style>

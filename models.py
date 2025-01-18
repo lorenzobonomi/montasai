@@ -40,11 +40,12 @@ class ModelAnthropic:
 
 class ModelOpenAI:
 
-    def __init__(self, temperature, modelversion):
+    def __init__(self, temperature, modelversion, reasoningEffort):
 
         self.model = modelversion
         self.temperature = temperature
         self.client = OpenAI(api_key = st.secrets[openaiKey])
+        self.reasoningEffort = reasoningEffort
 
     def createM(self, messagesOpenAI):
         
@@ -105,12 +106,12 @@ def chatOutput(modelName, messagesName, systemPrompt, client, modelversion):
         return stream.content[0].text
 
 
-def chatInteraction(systemPrompt, modelName, messagesName, prompt, modelversion):
+def chatInteraction(systemPrompt, modelName, messagesName, prompt, modelversion, reasoningEffort):
     
     consensus = "I asked the same question to another model. Please analyze its answer in [] and improve your answer"
 
     if modelName == openaiName:
-        client = ModelOpenAI(0, modelversion)
+        client = ModelOpenAI(0, modelversion, reasoningEffort)
     else:
         client = ModelAnthropic(0, systemPrompt, 500, modelversion)
     

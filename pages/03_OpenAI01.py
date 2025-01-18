@@ -3,7 +3,6 @@ from models import chatInteraction
 from models import openaiName
 
 messagesAnt = 'messagesOpenAI01Solo'
-#odelversion = 'o1-preview-2024-09-12'
 
 st.set_page_config(page_title = 'Montasai')
 st.sidebar.header("Montasai")
@@ -17,13 +16,15 @@ with st.sidebar:
 
     optionLatex = st.radio("Enable LatexFormatting:", ("Yes", "No"))
 
+    optionReasoningEffort = st.radio("Reasoning Effort:", ("low", "medium", "high"))
+
 if prompt := st.chat_input('Ask the model'):
     st.markdown(openaiName)
 
     if optionLatex == "Yes":
         prompt = prompt + st.session_state.latexFormatting
 
-    chatInteraction(systemPrompt, openaiName, messagesAnt, prompt, st.session_state.modelversionOAI01)
+    chatInteraction(systemPrompt, openaiName, messagesAnt, prompt, st.session_state.modelversionOAI01, optionReasoningEffort)
 
 
 
